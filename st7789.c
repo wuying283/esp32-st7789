@@ -385,7 +385,7 @@ esp_err_t st7789_invon(st7789_device_handle_t device)
 
 esp_err_t st7789_gamset(
     st7789_device_handle_t device,
-    uint8_t *config)
+    uint8_t config)
 {
     uint8_t param = config & 0x0F;
     return st7789_with_data(

@@ -570,23 +570,15 @@ esp_err_t st7789_invon(st7789_device_handle_t device);
  *
  * Sends a GAMSET command (26h) and 8 bytes of data.
  *
- * NOTE 1: If using DMA, the provided data must be in
- * RAM and not ROM since DMA cannot access ROM.
- *
- * NOTE 2: This function uses the transaction's `tx_buffer`
- * rather than using the 64-byte `tx_data`. For this reason,
- * the provided data must remain accessible in memory until
- * the transaction is complete.
- *
  * @param device the ST7789 device handle
- * @param polarity 8 bytes representing gamma curve, built
+ * @param config 8 bytes representing gamma curve, built
  *        up by bitwise OR of any combination of the
  *        ST7789_CFG_GC_* values or none at all (0x00)
  * @return ESP_OK or an error code
  */
 esp_err_t st7789_gamset(
     st7789_device_handle_t device,
-    uint8_t *config
+    uint8_t config
 );
 
 
