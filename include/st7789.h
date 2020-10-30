@@ -109,7 +109,7 @@
 #define ST7789_CFG_GC3_G25_3       0x04
 #define ST7789_CFG_GC4_G10_4       0x08
 
-// MADCTRL
+// MADCTL
 #define ST7789_CFG_MIRROR_X        0x40
 #define ST7789_CFG_MIRROR_Y        0x80
 #define ST7789_CFG_EXCHANGE_XY     0x20
@@ -117,9 +117,9 @@
 #define ST7789_CFG_REFRESH_BTT     0x10
 #define ST7789_CFG_BGR             0x08
 
-#define ST7789_CFG_12_BIT_COLOR    0x03
-#define ST7789_CFG_16_BIT_COLOR    0x05
-#define ST7789_CFG_18_BIT_COLOR    0x06
+#define ST7789_CFG_12_BIT_COLOR    0x33
+#define ST7789_CFG_16_BIT_COLOR    0x55
+#define ST7789_CFG_18_BIT_COLOR    0x66
 
 #define ST7789_CFG_BCKL_OFF        0x00
 #define ST7789_CFG_BCKL_ON         0x01
@@ -621,8 +621,8 @@ esp_err_t st7789_dispon(st7789_device_handle_t device);
  */
 esp_err_t st7789_caset(
     st7789_device_handle_t device,
-    uint8_t x_min,
-    uint8_t x_max
+    uint16_t x_min,
+    uint16_t x_max
 );
 
 
@@ -641,8 +641,8 @@ esp_err_t st7789_caset(
  */
 esp_err_t st7789_raset(
     st7789_device_handle_t device,
-    uint8_t y_min,
-    uint8_t y_max
+    uint16_t y_min,
+    uint16_t y_max
 );
 
 
@@ -818,10 +818,10 @@ void st7789_backlight(
 esp_err_t st7789_paint(
     st7789_device_handle_t device,
     uint16_t * buffer,
-    uint8_t x_min,
-    uint8_t x_max,
-    uint8_t y_min,
-    uint8_t y_max
+    uint16_t x_min,
+    uint16_t x_max,
+    uint16_t y_min,
+    uint16_t y_max
 );
 
 

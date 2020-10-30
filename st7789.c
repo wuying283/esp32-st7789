@@ -424,10 +424,10 @@ esp_err_t st7789_dispon(st7789_device_handle_t device)
 
 esp_err_t st7789_caset(
     st7789_device_handle_t device,
-    uint8_t x_min,
-    uint8_t x_max
+    uint16_t x_min,
+    uint16_t x_max
 ) {
-    uint8_t buffer[4] = { 0x00, x_min, 0x00, x_max };
+    uint8_t buffer[4] = { x_min / 256, x_min % 256, x_max / 256, x_max % 256 };
     return st7789_with_data(
         device,
         "st7789_caset",
@@ -440,10 +440,10 @@ esp_err_t st7789_caset(
 
 esp_err_t st7789_raset(
     st7789_device_handle_t device,
-    uint8_t y_min,
-    uint8_t y_max)
+    uint16_t y_min,
+    uint16_t y_max)
 {
-    uint8_t buffer[4] = { 0x00, y_min, 0x00, y_max };
+    uint8_t buffer[4] = { y_min / 256, y_min % 256, y_max / 256, y_max % 256 };
     return st7789_with_data(
         device,
         "st7789_raset",
@@ -536,24 +536,24 @@ void st7789_backlight(
 esp_err_t st7789_paint(
     st7789_device_handle_t device,
     uint16_t * buffer,
-    uint8_t x_min,
-    uint8_t x_max,
-    uint8_t y_min,
-    uint8_t y_max)
+    uint16_t x_min,
+    uint16_t x_max,
+    uint16_t y_min,
+    uint16_t y_max)
 {
     spi_transaction_t trans[6];
 
     st7789_cmd_init(device, &trans[0], ST7789_CMD_CASET);
     uint8_t col_range[4] = {
-        0x00, x_min,
-        0x00, x_max
+        x_min / 256, x_min % 256,
+        x_max / 256, x_max % 256
     };
     st7789_data_init(device, &trans[1], col_range, 4);
 
     st7789_cmd_init(device, &trans[2], ST7789_CMD_RASET);
     uint8_t row_range[4] = {
-        0x00, y_min,
-        0x00, y_max
+        y_min / 256, y_min % 256,
+        y_max / 256, y_max % 256
     };
     st7789_data_init(device, &trans[3], row_range, 4);
 
