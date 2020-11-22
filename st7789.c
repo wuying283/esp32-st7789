@@ -250,11 +250,11 @@ void st7789_hwreset(st7789_device_handle_t device)
 {
     if (device->gpio_rst != GPIO_NUM_NC) {
         gpio_set_level(device->gpio_rst, 1);
-        vTaskDelay(100 / portTICK_RATE_MS);
+        vTaskDelay(100 / portTICK_PERIOD_MS);
         gpio_set_level(device->gpio_rst, 0);
-        vTaskDelay(100 / portTICK_RATE_MS);
+        vTaskDelay(100 / portTICK_PERIOD_MS);
         gpio_set_level(device->gpio_rst, 1);
-        vTaskDelay(300 / portTICK_RATE_MS);
+        vTaskDelay(300 / portTICK_PERIOD_MS);
     }
 }
 
@@ -311,7 +311,7 @@ esp_err_t st7789_swreset(st7789_device_handle_t device)
         "st7789_swreset",
         ST7789_CMD_SWRESET
     );
-    vTaskDelay(150.0 / portTICK_RATE_MS);
+    vTaskDelay(150.0 / portTICK_PERIOD_MS);
     return ret;
 }
 
@@ -323,7 +323,7 @@ esp_err_t st7789_slpin(st7789_device_handle_t device)
         "st7789_slpin",
         ST7789_CMD_SLPIN
     );
-    vTaskDelay(150.0 / portTICK_RATE_MS);
+    vTaskDelay(150.0 / portTICK_PERIOD_MS);
     return ret;
 }
 
@@ -334,7 +334,7 @@ esp_err_t st7789_slpout(st7789_device_handle_t device) {
         "st7789_slpout",
         ST7789_CMD_SLPOUT
     );
-    vTaskDelay(150.0 / portTICK_RATE_MS);
+    vTaskDelay(150.0 / portTICK_PERIOD_MS);
     return ret;
 }
 
@@ -346,7 +346,7 @@ esp_err_t st7789_noron(st7789_device_handle_t device)
         "st7789_noron",
         ST7789_CMD_NORON
     );
-    vTaskDelay(10.0 / portTICK_RATE_MS);
+    vTaskDelay(10.0 / portTICK_PERIOD_MS);
     return ret;
 }
 
@@ -358,7 +358,7 @@ esp_err_t st7789_ptlon(st7789_device_handle_t device)
         "st7789_ptlon",
         ST7789_CMD_PTLON
     );
-    vTaskDelay(10.0 / portTICK_RATE_MS);
+    vTaskDelay(10.0 / portTICK_PERIOD_MS);
     return ret;
 }
 
@@ -405,7 +405,7 @@ esp_err_t st7789_dispoff(st7789_device_handle_t device)
         "st7789_dspoff",
         ST7789_CMD_DISPOFF
     );
-    vTaskDelay(10.0 / portTICK_RATE_MS);
+    vTaskDelay(10.0 / portTICK_PERIOD_MS);
     return ret;
 }
 
@@ -417,7 +417,7 @@ esp_err_t st7789_dispon(st7789_device_handle_t device)
         "st7789_dispon",
         ST7789_CMD_DISPON
     );
-    vTaskDelay(10.0 / portTICK_RATE_MS);
+    vTaskDelay(10.0 / portTICK_PERIOD_MS);
     return ret;
 }
 
